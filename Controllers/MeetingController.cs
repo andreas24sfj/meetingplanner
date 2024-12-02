@@ -14,7 +14,7 @@ class MeetingController
         _meetings = LoadMeetings();
     }
 
-    public bool HandleMenu()
+    public bool RunMenu()
     {
         string? choice = _view.MenuChoice();
 

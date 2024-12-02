@@ -5,5 +5,5 @@ bool isRunning = true;
 
 while (isRunning)
 {
-    isRunning = controller.HandleMenu();
+    isRunning = controller.RunMenu();
 }
