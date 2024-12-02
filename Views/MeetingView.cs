@@ -58,7 +58,7 @@ class MeetingView
 
         foreach (var meeting in meetings)
         {
-            Console.WriteLine(meeting.ToString());
+            Console.WriteLine(meeting.ToString()); //skriver ut meeting med override tostring metode. $"{string.Join(" and ", Participants)} are meeting at {Time}.";
         }
     }
 }
