@@ -1,13 +1,12 @@
 ﻿MeetingController controller = new MeetingController();
-MeetingView view = new MeetingView();
 
 bool isRunning = true;
 
-string[] meetingParticipants;
 
 while (isRunning)
 {
-    view.DisplayMessage("Do you wish to ADD a new meeting or LIST current meetings?");
+    isRunning = controller.HandleMenu();
+    /*view.DisplayMessage("Do you wish to ADD a new meeting or LIST current meetings?");
     string? initialInput = Console.ReadLine();
     if (initialInput?.Trim().ToLower() == "add")
     {
@@ -53,5 +52,5 @@ while (isRunning)
     else
     {
         view.DisplayMessage("Please write either ADD to add new meeting or LIST to list all meetings.");
-    }
+    }*/
 }
