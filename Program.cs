@@ -2,7 +2,6 @@
 
 bool isRunning = true;
 
-
 while (isRunning)
 {
     isRunning = controller.RunMenu();

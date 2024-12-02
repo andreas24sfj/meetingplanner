@@ -11,7 +11,7 @@ class MeetingView
             return string.Empty;
         }
 
-        return input.Trim().ToLower();
+        return input.Trim().ToLower(); // returnerer brukerinput uten whitespace og i lowercase for å stemme med switchen
     }
 
     public string[] GetParticipants()
@@ -22,7 +22,7 @@ class MeetingView
             string? input = Console.ReadLine();
             if (!string.IsNullOrWhiteSpace(input))
             {
-                return input.Split(',').Select(participant => participant.Trim()).ToArray();
+                return input.Split(',').Select(participant => participant.Trim()).ToArray(); // splitter arrayet ved (,) , trimmer whitespace og lager string[]
             }
             Console.WriteLine("Please write something. Participants cant be null or empty.");
 
@@ -35,7 +35,7 @@ class MeetingView
         {
             Console.WriteLine("What time will they be meeting? use format (yyyy-MM-dd HH:mm)");
             string? input = Console.ReadLine();
-            if (DateTime.TryParse(input, out DateTime time))
+            if (DateTime.TryParse(input, out DateTime time))  // hvis den klarer å parse til DateTime, gjør om til DateTime og returner.
             {
                 return time;
             }

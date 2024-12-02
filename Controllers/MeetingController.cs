@@ -11,7 +11,7 @@ class MeetingController
     public MeetingController()
     {
         _view = new MeetingView();
-        _meetings = LoadMeetings();
+        _meetings = LoadMeetings(); // LoadMeetings returnerer en List<Meeting> fra meetings.json
     }
 
     public bool RunMenu()
@@ -41,17 +41,17 @@ class MeetingController
     }
     public void NewMeeting() //tar inn et nytt møte meeting og legger det til meetings dokumentet(meetings.json)
     {
-        string[] participants = _view.GetParticipants();
-        DateTime time = _view.GetTime();
+        string[] participants = _view.GetParticipants(); // kjører GetParticipants metoden fra view, ber bruker om hvilke deltagere som skal være med
+        DateTime time = _view.GetTime(); // kjører GetTime metoden fra view, ber bruker om en tid for møtet
 
-        Meeting meeting = new Meeting()
+        Meeting meeting = new Meeting()  // lager et nytt møte med brukerens input
         {
             Participants = participants,
             Time = time
         };
 
-        _meetings.Add(meeting);
-        SaveToJson(); //serialize til json og skriv in i meetings.json
+        _meetings.Add(meeting); //legger til møtet i List<Meeting> _meetings
+        SaveToJson(); //serialize til json og skriv inn i meetings.json
 
         _view.DisplayMessage("New meeting has been saved!");
 
@@ -59,8 +59,8 @@ class MeetingController
 
     public void SaveToJson()
     {
-        string json = JsonSerializer.Serialize(_meetings);
-        File.WriteAllText("meetings.json", json);
+        string json = JsonSerializer.Serialize(_meetings); // gjør møtet(string[] og DateTime) om til Json format
+        File.WriteAllText("meetings.json", json); // skriver inn til meetings.json
     }
 
     public void ListMeetings()
@@ -75,7 +75,7 @@ class MeetingController
             return new List<Meeting>(); // lag ny liste med møter
         }
 
-        string json = File.ReadAllText("meetings.json"); // leser all teksten i meetings.json og lagrer det i json variabelen.
-        return JsonSerializer.Deserialize<List<Meeting>>(json) ?? new List<Meeting>(); // gjør om teksten til et et List<Meeting> objekt. om det ikke går(), lag en ny List<meeting>.
+        string json = File.ReadAllText("meetings.json"); // leser all teksten i meetings.json
+        return JsonSerializer.Deserialize<List<Meeting>>(json) ?? new List<Meeting>(); // gjør om teksten til et et List<Meeting> objekt. om den er null, eller ikke klarer å gjøre det om, lag ny liste.
     }
 }
