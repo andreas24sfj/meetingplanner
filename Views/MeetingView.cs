@@ -1,9 +1,17 @@
+using System.Net.Http.Headers;
+
 class MeetingView
 {
     public string MenuChoice()
     {
         Console.WriteLine("Do you wish to ADD a new meeting, LIST current meetings or EXIT?");
-        return Console.ReadLine().Trim().ToLower();
+        string? input = Console.ReadLine();
+        if (string.IsNullOrEmpty(input))
+        {
+            return string.Empty;
+        }
+
+        return input.Trim().ToLower();
     }
 
     public string[] GetParticipants()
@@ -16,7 +24,7 @@ class MeetingView
             {
                 return input.Split(',').Select(participant => participant.Trim()).ToArray();
             }
-            Console.WriteLine("Please write something. Participants cant be empty.");
+            Console.WriteLine("Please write something. Participants cant be null or empty.");
 
         }
     }

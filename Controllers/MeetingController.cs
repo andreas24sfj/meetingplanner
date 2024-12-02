@@ -3,8 +3,8 @@ using System.Text.Json;
 
 class MeetingController
 {
-    private MeetingView _view;
-    private List<Meeting> _meetings;
+    public MeetingView _view;
+    public List<Meeting> _meetings;
 
 
 
@@ -16,7 +16,7 @@ class MeetingController
 
     public bool HandleMenu()
     {
-        string choice = _view.MenuChoice();
+        string? choice = _view.MenuChoice();
 
         switch (choice)
         {
