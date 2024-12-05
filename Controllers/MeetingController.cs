@@ -57,9 +57,14 @@ class MeetingController
 
     }
 
+    public JsonSerializerOptions options = new JsonSerializerOptions
+    {
+        WriteIndented = true
+    };
+
     public void SaveToJson()
     {
-        string json = JsonSerializer.Serialize(_meetings); // gjør møtet(string[] og DateTime) om til Json format
+        string json = JsonSerializer.Serialize(_meetings, options); // gjør møtet(string[] og DateTime) om til Json format
         File.WriteAllText("meetings.json", json); // skriver inn til meetings.json
     }
 
